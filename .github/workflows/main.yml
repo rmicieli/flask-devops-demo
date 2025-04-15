@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  build-and-test:
+  build-test-docker:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,10 +21,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install flask
+          pip install -r requirements.txt
 
-      - name: Run basic test
+      - name: Run tests
         run: |
-          echo "Running basic test..."
-          curl -s http://localhost:5000 || echo "Can't test Flask directly without deployment"
+          pytest
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t flask-devops-app .
 
