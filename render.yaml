@@ -1,9 +1,15 @@
 services:
   - type: web
-    name: flask-docker-app
+    name: flask-devops-demo
     env: docker
-    buildCommand: docker build -t flask-docker-app .
-    startCommand: python app.py
-    dockerfilePath: ./Dockerfile
-    port: 5000
+    repo: https://github.com/rmicieli/flask-devops-demo
+    branch: main
+    dockerfilePath: ./dockerfile
+    plan: free
+    autoDeploy: true
+    buildFilter:
+      paths:
+        - dockerfile
+        - app.py
+        - requirements.txt
 
