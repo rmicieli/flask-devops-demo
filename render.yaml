@@ -4,12 +4,12 @@ services:
     env: docker
     repo: https://github.com/rmicieli/flask-devops-demo
     branch: main
-    dockerfilePath: ./dockerfile
+    dockerfilePath: ./Dockerfile
     plan: free
     autoDeploy: true
     buildFilter:
       paths:
-        - dockerfile
+        - Dockerfile
         - app.py
         - requirements.txt
 
